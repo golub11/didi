@@ -1,0 +1,69 @@
+import 'dart:io';
+
+import 'package:flutter/widgets.dart';
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:untitled/Model/WordEN.dart';
+import 'package:untitled/repository/DataConversion.dart';
+
+import '../constants.dart';
+
+class RepositoryWordEN{
+    Database? db;
+    DataConversion? helper;
+
+    Future<Database> createDB() async {
+    // Avoid errors caused by flutter upgrade.
+    WidgetsFlutterBinding.ensureInitialized();
+    // Open the database and store the reference.
+    final database = openDatabase(
+      join(await getDatabasesPath(), 'didi_database.db'),
+      onCreate: (db,version) {
+        return db.execute(
+          'CREATE TABLE IF NOT EXISTS words_en(id INTEGER PRIMARY KEY, word TEXT, phonetic TEXT, definition TEXT, type TEXT)',
+        );
+      },
+      version: 1,
+    );
+    return database;
+  }
+
+    RepositoryWordEN(){
+    }
+    set enableDataConversion(DataConversion conv){
+      helper = conv;
+    }
+
+    insertWordEN(WordEN word, Database db){
+      if (db.isOpen){
+        db.execute(
+            "INSERT Into words_en (word,phonetic,definition,type)"
+                " VALUES (?,?,?,?)",
+            [word.word, word.phonetic, word.definition, word.type]);
+      }
+    }
+
+  updateWordEN(WordEN word) async {
+    // Update some record with SQL query
+    int? count = await db?.rawUpdate(
+        'UPDATE Test SET name = ?, value = ? WHERE name = ?',
+        ['updated name', '9876', 'some name']);
+    print('updated: $count');
+
+    }
+
+    Future<void> updateWordEN_2(WordEN word, Database db) async {
+      // Update the given Dog.
+      await db.update(
+        WORDS_EN_TABLE,
+        word.toMap(),
+        // Ensure that the Dog has a matching id.
+        where: 'id = ?',
+        // Pass the Dog's id as a whereArg to prevent SQL injection.
+        whereArgs: [word.id],
+      )
+
+  }
+
+
+}
