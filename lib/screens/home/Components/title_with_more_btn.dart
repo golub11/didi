@@ -17,8 +17,7 @@ class TitleWithMoreButton extends StatelessWidget {
           TitleWithCustomUnderLine(),
           Spacer(),
           TextButton(
-              style: TextButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
-                  ,primary: Colors.white,backgroundColor: kPrimaryColor),
+              style: TextButton.styleFrom(foregroundColor: Colors.white, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),backgroundColor: kPrimaryColor),
               onPressed: (){},
 
               child:  Text("More"))

@@ -56,7 +56,7 @@ class HorizontalSuggestionCard extends StatelessWidget {
                     RichText(text:
                       TextSpan(
                         children: [
-                          TextSpan(text:"$title_heading_1\n".toUpperCase(), style: Theme.of(context).textTheme.button),
+                          TextSpan(text:"$title_heading_1\n".toUpperCase(), style: Theme.of(context).textTheme.labelLarge),
                           TextSpan(text:"$title_heading_2".toUpperCase(),style: TextStyle(color: kPrimaryColor.withOpacity(0.5))),
                         ]
                       )

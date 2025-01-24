@@ -27,16 +27,16 @@ class DBProvider {
 
   initDB() async {
     String path = join(await getDatabasesPath(), 'didi_database.db');
-    return await openDatabase(path, version: 3, onOpen: (db) {}, onCreate: (Database db, int version) async {
-      await db.execute(
-          'CREATE TABLE ' + WORDS_EN_TABLE + '(id INTEGER PRIMARY KEY, word TEXT, phonetic TEXT, audio_url TEXT); ');
-      await db.execute(
-          'CREATE TABLE IF NOT EXISTS ' + MEANINGS_EN_TABLE + '(id INTEGER PRIMARY KEY, fk_word_id INTEGER, word_class TEXT, synonyms TEXT, antonyms TEXT); ');
-      await db.execute(
-          'CREATE TABLE IF NOT EXISTS ' + DEFINITIONS_EN_TABLE + '(id INTEGER PRIMARY KEY, fk_meaning_id INTEGER, definition TEXT, example TEXT); ');
-      await db.execute(
-          'CREATE TABLE ' + WORDS_DE_TABLE + '(id INTEGER PRIMARY KEY, word TEXT, phonetic TEXT, definition TEXT, type TEXT)');
-    });
+    // return await openDatabase(path, version: 3, onOpen: (db) {}, onCreate: (Database db, int version) async {
+    //   await db.execute(
+    //       'CREATE TABLE ' + WORDS_EN_TABLE + '(id INTEGER PRIMARY KEY, word TEXT, phonetic TEXT, audio_url TEXT); ');
+    //   await db.execute(
+    //       'CREATE TABLE IF NOT EXISTS ' + MEANINGS_EN_TABLE + '(id INTEGER PRIMARY KEY, fk_word_id INTEGER, word_class TEXT, synonyms TEXT, antonyms TEXT); ');
+    //   await db.execute(
+    //       'CREATE TABLE IF NOT EXISTS ' + DEFINITIONS_EN_TABLE + '(id INTEGER PRIMARY KEY, fk_meaning_id INTEGER, definition TEXT, example TEXT); ');
+    //   await db.execute(
+    //       'CREATE TABLE ' + WORDS_DE_TABLE + '(id INTEGER PRIMARY KEY, word TEXT, phonetic TEXT, definition TEXT, type TEXT)');
+    // });
   }
 
   insertWord(Word word) async {
